@@ -23,7 +23,7 @@
             </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav">
+            <ul ng-if="authService.isLoggedIn()" class="nav navbar-nav">
                 <li>
                     <a href="#/">Dashboard</a>
                 </li>
@@ -42,7 +42,7 @@
 
             <ul ng-if="authService.isLoggedIn()" class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="" id="download">{{user}}<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="" id="download">{{authService.getCurrentUser().username}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="download">
                         <li><a href="#/profile/password">Change Password</a></li>
                     </ul>

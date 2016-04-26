@@ -8,11 +8,6 @@ app.controller('MainController', [
     function ($scope, authService, $location, notifyService) {
         $scope.authService = authService;
 
-        var currentUsername = authService.getCurrentUser().username;
-        if (currentUsername) {
-            $scope.user = currentUsername;
-        }
-
         $scope.logout = function () {
             authService.logout();
 
