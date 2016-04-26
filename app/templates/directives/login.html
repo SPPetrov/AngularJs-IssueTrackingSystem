@@ -1,24 +1,24 @@
-<form class="form-horizontal">
+<form class="form-horizontal" name="loginUserForm">
     <fieldset>
-        <legend class="">Login</legend>
+        <legend>Login</legend>
         <!--email-->
         <div class="form-group">
-            <label for="loginEmail" class="col-md-5 control-label">Email</label>
+            <label for="email" class="col-md-5 control-label">Email</label>
             <div class="col-md-7">
-                <input type="text" class="form-control" id="loginEmail" placeholder="Email">
+                <input ng-model="loginUser.username" type="text" class="form-control" id="email" placeholder="Email" required="required">
             </div>
         </div>
         <!--password-->
         <div class="form-group">
-            <label for="loginPassword" class="col-md-5 control-label">Password</label>
+            <label for="password" class="col-md-5 control-label">Password</label>
             <div class="col-md-7">
-                <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                <input ng-model="loginUser.password" type="password" class="form-control" id="password" placeholder="Password" required="required">
             </div>
         </div>
         <!--button-->
         <div class="form-group">
             <div class="col-md-12 text-center">
-                <button class="btn btn-primary">Login</button>
+                <button ng-click="login(loginUser)" ng-disabled="loginUserForm.$invalid" class="btn btn-primary">Login</button>
             </div>
         </div>
     </fieldset>

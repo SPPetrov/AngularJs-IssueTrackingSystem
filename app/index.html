@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <link rel="stylesheet" href="css/app.css" />
 </head>
-<body class="" ng-controller="MainController">
+<body class="" ng-controller="MainController" >
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -28,7 +28,7 @@
                     <a href="#/">Dashboard</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav">
+            <ul ng-if="authService.isAdmin()" class="nav navbar-nav">
                 <li>
                     <a href="#/projects">Project All</a>
                 </li>
@@ -40,15 +40,15 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul ng-if="authService.isLoggedIn()" class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">{{user.name}}<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="" id="download">{{user}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="download">
                         <li><a href="#/profile/password">Change Password</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#/logout">Logout</a>
+                    <a href="#/" ng-click="logout()">Logout</a>
                 </li>
             </ul>
 
@@ -57,13 +57,19 @@
 </div>
 
 <div class="content">
-    <div ng-view></div>
+    <div ng-view ng-cloak></div>
 </div>
 
-<footer>
+<footer class="container container-holder">
     <div class="row">
-        <div class="col-md-12">
-            <p>AngularJs - Issue Tracker Project</p>
+        <div class="col-md-3 text-center">
+            <p>SoftUni Cource - AngularJs</p>
+        </div>
+		<div class="col-md-3 text-center">
+            <p>AngularJs - Issue Tracker Project - 2016</p>
+        </div>
+		<div class="col-md-3 text-center">
+            <p>Author: Stoyko Petrov</p>
         </div>
     </div>
 </footer>
@@ -78,6 +84,12 @@
 <script src="js/app.js"></script>
 <script src="js/controllers/MainController.js"></script>
 <script src="js/controllers/HomeController.js"></script>
+<script src="js/controllers/user/LoginController.js"></script>
+<script src="js/controllers/user/RegisterController.js"></script>
+
+<script src="js/services/authService.js"></script>
+<script src="js/services/notifyService.js"></script>
+
 <script src="js/directives/login.js"></script>
 <script src="js/directives/register.js"></script>
 </body>

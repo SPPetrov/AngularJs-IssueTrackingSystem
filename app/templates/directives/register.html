@@ -1,31 +1,31 @@
-<form class="form-horizontal">
+<form class="form-horizontal" name="registerUserForm">
     <fieldset>
         <legend>Register</legend>
         <!--email-->
         <div class="form-group">
-            <label for="registerEmail" class="col-md-5 control-label">Email</label>
+            <label for="email" class="col-md-5 control-label">Email</label>
             <div class="col-md-7">
-                <input type="text" class="form-control" id="registerEmail" placeholder="Email">
+                <input ng-model="registerUser.email" type="text" class="form-control" id="email" placeholder="Email" required="required">
             </div>
         </div>
         <!--password-->
         <div class="form-group">
-            <label for="registerPassword" class="col-md-5 control-label">Password</label>
+            <label for="password" class="col-md-5 control-label">Password</label>
             <div class="col-md-7">
-                <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+                <input ng-model="registerUser.password" type="password" class="form-control" id="password" placeholder="Password" required="required">
             </div>
         </div>
         <!--confirm password-->
         <div class="form-group">
-            <label for="confirmRegisterPassword" class="col-md-5 control-label">Confirm Password</label>
+            <label for="confirmPassword" class="col-md-5 control-label">Confirm Password</label>
             <div class="col-md-7">
-                <input type="password" class="form-control" id="confirmRegisterPassword" placeholder="Password">
+                <input ng-model="registerUser.confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Password" required="required">
             </div>
         </div>
         <!--button-->
         <div class="form-group">
             <div class="col-md-12 text-center">
-                <button class="btn btn-primary">Register</button>
+                <button ng-click="register(registerUser)" class="btn btn-primary">Register</button>
             </div>
         </div>
     </fieldset>

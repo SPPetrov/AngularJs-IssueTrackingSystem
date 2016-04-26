@@ -3,6 +3,6 @@ app.directive('register', function () {
         restrict: 'A',
         replace: true,
         templateUrl: 'templates/directives/register.html',
-        controller: 'UserController.Register'
-    }
+        controller: 'RegisterController'
+    };
 });

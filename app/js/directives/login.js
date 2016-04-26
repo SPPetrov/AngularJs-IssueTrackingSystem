@@ -3,6 +3,6 @@ app.directive('login', function () {
         restrict: 'A',
         replace: true,
         templateUrl: 'templates/directives/login.html',
-        controller: 'UserController.Login'
-    }
+        controller: 'LoginController'
+    };
 });
