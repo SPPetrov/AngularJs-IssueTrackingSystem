@@ -15,12 +15,9 @@ app.controller('RegisterController',[
 
                     authService.login(userData)
                         .then(function (response) {
-                            notifyService.showInfo('Login successfully');
+                            authService.setCurrentUserData();
                             $location.path('/');
-                        }, function (error) {
-                            notifyService.showError('Login error');
                         });
-
                 },function (error) {
                     notifyService.showError('Register error', error);
                 });

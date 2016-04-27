@@ -7,6 +7,9 @@ body {
     margin-top: 100px;
 }
 
+.error{
+    color: coral;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -26,9 +29,9 @@ body {
     width: 250px;
 }
 
-input.ng-invalid.ng-dirty {
-    background-color: pink;
-}
+/*input.ng-invalid.ng-dirty {*/
+    /*background-color: pink;*/
+/*}*/
 
 .menu:before {
   content: "[";

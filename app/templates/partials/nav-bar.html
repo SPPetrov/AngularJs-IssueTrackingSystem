@@ -1,0 +1,43 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="" class="navbar-brand">Issue Tracker</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul ng-if="authService.isLoggedIn()" class="nav navbar-nav">
+                <li>
+                    <a href="#/">Dashboard</a>
+                </li>
+            </ul>
+            <ul ng-if="authService.isAdmin()" class="nav navbar-nav">
+                <li>
+                    <a href="#/projects">Project All</a>
+                </li>
+                <li>
+                    <a href="#/projects/add">Add New Project</a>
+                </li>
+                <li>
+                    <a href="#/users">Make Admin</a>
+                </li>
+            </ul>
+
+            <ul ng-if="authService.isLoggedIn()" class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#/profile/" id="download">{{authService.getCurrentUserData().username}}<span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="download">
+                        <li><a href="#/profile/password">Change Password</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" ng-click="logout()">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

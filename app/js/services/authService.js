@@ -38,7 +38,7 @@ app.factory('authService', [
                 $http.defaults.headers.common['Authorization'] = '';
                 delete sessionStorage['currentUser'];
             },
-            setCurrentUser: function () {
+            setCurrentUserData: function () {
                 var deferred = $q.defer();
 
                 $http.get(BASE_URL + 'users/me')
@@ -55,7 +55,7 @@ app.factory('authService', [
 
                 return deferred.promise;
             },
-            getCurrentUser: function () {
+            getCurrentUserData: function () {
                 var userObject = sessionStorage['currentUser'];
                 if (userObject) {
                     return JSON.parse(sessionStorage['currentUser']);
@@ -68,12 +68,12 @@ app.factory('authService', [
                 return sessionStorage['currentUser'] != undefined;
             },
             isNormalUser: function () {
-                var currentUser = this.getCurrentUser();
+                var currentUser = this.getCurrentUserData();
 
                 return (currentUser != undefined) && (!currentUser.isAdmin);
             },
             isAdmin: function () {
-                var currentUser = this.getCurrentUser();
+                var currentUser = this.getCurrentUserData();
 
                 return (currentUser != undefined) && (currentUser.isAdmin);
             }

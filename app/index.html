@@ -12,67 +12,11 @@
     <link rel="stylesheet" href="css/app.css" />
 </head>
 <body class="" ng-controller="MainController" >
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="/" class="navbar-brand">Issue Tracker</a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-            <ul ng-if="authService.isLoggedIn()" class="nav navbar-nav">
-                <li>
-                    <a href="#/">Dashboard</a>
-                </li>
-            </ul>
-            <ul ng-if="authService.isAdmin()" class="nav navbar-nav">
-                <li>
-                    <a href="#/projects">Project All</a>
-                </li>
-                <li>
-                    <a href="#/projects/add">Add New Project</a>
-                </li>
-                <li>
-                    <a href="#/projects/add">Make Admin</a>
-                </li>
-            </ul>
-
-            <ul ng-if="authService.isLoggedIn()" class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="" id="download">{{authService.getCurrentUser().username}}<span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="download">
-                        <li><a href="#/profile/password">Change Password</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#/" ng-click="logout()">Logout</a>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-</div>
+<div ng-include="'templates/partials/nav-bar.html'"></div>
 
 <div class="content">
     <div ng-view ng-cloak></div>
 </div>
-
-<footer class="container container-holder">
-    <div class="row">
-        <div class="col-md-3 text-center">
-            <p>SoftUni Cource - AngularJs</p>
-        </div>
-		<div class="col-md-3 text-center">
-            <p>AngularJs - Issue Tracker Project - 2016</p>
-        </div>
-		<div class="col-md-3 text-center">
-            <p>Author: Stoyko Petrov</p>
-        </div>
-    </div>
-</footer>
 <script src="lib/jquery/jquery-2.1.3.js"></script>
 <script src="lib/bootstrap/bootstrap-3.1.1.js"></script>
 <script src="lib/angular/angular.js"></script>
