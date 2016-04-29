@@ -8,15 +8,16 @@ app.controller('RegisterController',[
     function ($scope, $location, authService, notifyService) {
         $scope.register = function (userData) {
             authService.register(userData)
-                .then(function (response) {
+                .then(function (data) {
                     notifyService.showInfo('Register successfully');
                     userData.username = userData.email;
                     delete userData.email;
 
                     authService.login(userData)
-                        .then(function (response) {
+                        .then(function (data) {
                             authService.setCurrentUserData();
                             $location.path('/');
+
                         });
                 },function (error) {
                     notifyService.showError('Register error', error);

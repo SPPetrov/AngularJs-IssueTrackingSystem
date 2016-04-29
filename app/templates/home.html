@@ -1,8 +1,13 @@
-<div ng-if="authService.isAnonymous()" class="row margin-top-100">
+<div ng-if="authService.isAnonymous()" class="row margin-top-80">
     <div class="col-md-4 col-md-offset-1 well bs-component">
         <div login></div>
     </div>
     <div class="col-md-4 col-md-offset-2 well bs-component">
         <div register></div>
+    </div>
+</div>
+<div ng-if="authService.isLoggedIn()" class="row margin-top-80">
+    <div class="col-md-12">
+        <div dashboard></div>
     </div>
 </div>

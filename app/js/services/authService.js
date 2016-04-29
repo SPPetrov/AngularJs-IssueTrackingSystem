@@ -13,7 +13,6 @@ app.factory('authService', [
 
                 $http.post(BASE_URL + 'api/Token', data)
                     .then(function (response) {
-                        $http.defaults.headers.common['Authorization'] = "Bearer " + response.data['access_token'];
                         sessionStorage['currentUser'] = JSON.stringify({access_token: response.data['access_token']});
                         deferred.resolve(response.data);
                     }, function (error) {
@@ -35,13 +34,12 @@ app.factory('authService', [
                 return deferred.promise;
             },
             logout: function () {
-                $http.defaults.headers.common['Authorization'] = '';
                 delete sessionStorage['currentUser'];
             },
             setCurrentUserData: function () {
                 var deferred = $q.defer();
 
-                $http.get(BASE_URL + 'users/me')
+                $http.get(BASE_URL + 'users/me',{headers :this.getAuthHeaders()})
                     .then(function (response) {
                         var currentUser = JSON.parse(sessionStorage['currentUser']);
                         currentUser['isAdmin'] = response.data.isAdmin;
@@ -76,16 +74,16 @@ app.factory('authService', [
                 var currentUser = this.getCurrentUserData();
 
                 return (currentUser != undefined) && (currentUser.isAdmin);
+            },
+            getAuthHeaders: function () {
+                var headers = {};
+                var currentUser = this.getCurrentUserData();
+                if (currentUser) {
+                    headers['Authorization'] = 'Bearer ' + currentUser.access_token;
+                }
+
+                return headers;
             }
-            //getAuthHeaders: function () {
-            //    var headers = {};
-            //    var currentUser = this.getCurrentUser();
-            //    if (currentUser) {
-            //        headers['Authorization'] = 'Bearer ' + currentUser.access_token;
-            //    }
-            //
-            //    return headers;
-            //}
         };
     }
 ]);

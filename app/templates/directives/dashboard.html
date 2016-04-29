@@ -1,0 +1,76 @@
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title text-center">Issue Tracker - Dashboard</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Issues</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Due Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="issue in issues.Issues" href="{{issue.id}}">
+                            <td ><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
+                            <td>{{issue.DueDate|date:"dd-MM-yyyy"}}</td>
+                        </tr>
+                        <tr ng-if="issuesTotalCount == 0">
+                            <td>No Issues</td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center" pagination ng-if="issues.TotalCount>issuesParams.pageSize" ng-model="issuesParams.pageNumber"
+                     items-per-page="issuesParams.pageSize" total-items="issues.TotalCount"
+                     ng-change="reloadIssuesToView()" max-size="6" boundary-links="true"></div>
+
+                <!--<div pagination ng-if="paginationIssue.maxSize>paginationIssue.pageSize" ng-model="paginationIssue.startPage"-->
+                     <!--items-per-page="paginationIssue.pageSize" total-items="paginationIssue.maxSize"-->
+                     <!--ng-change="selectIssuesToView()" max-size="9" boundary-links="true"></div>-->
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Projects</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Column heading</th>
+                            <th>Column heading</th>
+                            <th>Column heading</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
