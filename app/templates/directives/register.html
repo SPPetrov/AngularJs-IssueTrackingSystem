@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="password" class="col-md-5 control-label">Password</label>
             <div class="col-md-7">
-                <input ng-model="registerUser.password" name="registerPassword" minlength="6" maxlength="100" type="password" class="form-control" id="password" placeholder="Password" required="required">
+                <input ng-model="registerUser.password" name="registerPassword" type="password" class="form-control" id="password" placeholder="Password" required="required">
             </div>
             <div class="col-md-12 text-center" role="alert">
                 <span class="error" ng-show="registerUserForm.registerPassword.$error.required&&registerUserForm.registerPassword.$dirty">Required!</span>
@@ -25,7 +25,7 @@
         <div class="form-group">
             <label for="confirmPassword" class="col-md-5 control-label">Confirm Password</label>
             <div class="col-md-7">
-                <input ng-model="registerUser.confirmPassword" name="confirmRegisterPassword" minlength="6" maxlength="100" type="password" class="form-control" id="confirmPassword" placeholder="Password" required="required">
+                <input ng-model="registerUser.confirmPassword" name="confirmRegisterPassword" type="password" class="form-control" id="confirmPassword" placeholder="Password" required="required">
             </div>
             <div class="col-md-12 text-center" role="alert">
                 <span class="error" ng-show="registerUserForm.confirmRegisterPassword.$error.required&&registerUserForm.confirmRegisterPassword.$dirty">Required!</span>
@@ -34,7 +34,7 @@
         <!--button-->
         <div class="form-group">
             <div class="col-md-12 text-center">
-                <button ng-click="register(registerUser)" ng-disabled="registerUserForm.$invalid || registerUser.password != registerUser.confirmPassword" class="btn btn-primary">Register</button>
+                <button ng-click="register(registerUser)" ng-disabled="registerUserForm.$invalid" class="btn btn-primary">Register</button>
             </div>
         </div>
     </fieldset>
