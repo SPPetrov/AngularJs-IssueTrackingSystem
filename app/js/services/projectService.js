@@ -1,3 +1,35 @@
-/**
- * Created by Stoyko on 4/29/2016.
- */
+"use strict";
+
+app.factory('projectService',[
+    '$http',
+    '$q',
+    'authService',
+    'BASE_URL',
+    function ($http, $q, authService, BASE_URL) {
+        function getMyProjectAndAssignedProjects(allIssuesProjectId, params){
+            var deferred = $q.defer();
+
+            var currentUserId = authService.getCurrentUserData().id;
+            var filterUrl = 'filter=Lead.Id="' + currentUserId +'"';
+
+            for (var i = 0; i < allIssuesProjectId.length; i++) {
+                filterUrl += ' or Id==' + allIssuesProjectId[i];
+            }
+
+            filterUrl += '&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber;
+
+            $http.get(BASE_URL + 'Projects/?' + filterUrl, {headers :authService.getAuthHeaders()})
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }, function (error) {
+                    deferred.reject(error.data);
+                });
+
+            return deferred.promise;
+        }
+
+
+        return{
+            getMyProjectAndAssignedProjects: getMyProjectAndAssignedProjects
+        };
+    }]);

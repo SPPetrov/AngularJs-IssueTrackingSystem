@@ -9,9 +9,9 @@ app.factory('issueService',[
 
         function getMyIssues(params) {
             var deferred = $q.defer();
-            var filter = 'orderBy=DueDate desc, IssueKey' + '&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber;
+            var filterUrl = 'orderBy=DueDate desc, IssueKey' + '&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber;
 
-            $http.get(BASE_URL + 'Issues/me?' + filter, {headers :authService.getAuthHeaders()})
+            $http.get(BASE_URL + 'Issues/me?' + filterUrl, {headers :authService.getAuthHeaders()})
                 .then(function (response) {
                     deferred.resolve(response.data);
                 }, function (error) {
