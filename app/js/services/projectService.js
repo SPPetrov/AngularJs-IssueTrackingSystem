@@ -8,7 +8,6 @@ app.factory('projectService', [
     function ($http, $q, authService, BASE_URL) {
 
         return {
-            //getMyProjectAndAssignedProjects: getMyProjectAndAssignedProjects
             getMyProjectAndAssignedProjects: function (allIssuesProjectId, params) {
                 var deferred = $q.defer();
 

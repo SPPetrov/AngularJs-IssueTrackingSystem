@@ -26,6 +26,11 @@ var app = angular.module('IssueTracker',[
                 controller: 'InfoProjectController'
             });
 
+            $routeProvider.when('/issues/:id', {
+                templateUrl: 'templates/issue/info-issue.html',
+                controller: 'InfoIssueController'
+            });
+
             $routeProvider.otherwise({
                 redirectTo: '/'
             });
