@@ -1,5 +1,7 @@
+"use strict";
+
 app.directive('dashboard', function () {
-    return{
+    return {
         restrict: 'A',
         replace: true,
         templateUrl: 'templates/directives/dashboard.html',

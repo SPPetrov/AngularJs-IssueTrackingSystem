@@ -1,4 +1,6 @@
-app.controller('LoginController',[
+"use strict";
+
+app.controller('LoginController', [
     '$scope',
     '$location',
     'authService',
@@ -10,8 +12,8 @@ app.controller('LoginController',[
                     authService.setCurrentUserData();
                     notifyService.showInfo('Login Successfully');
                     $location.path('/');
-                },function (error) {
+                }, function (error) {
                     notifyService.showError('Login error!', error);
                 });
         };
-}]);
+    }]);

@@ -11,8 +11,18 @@ var app = angular.module('IssueTracker',[
                 templateUrl: 'templates/home.html'
             });
 
+            $routeProvider.when('/logout', {
+                templateUrl: 'templates/user/logout.html',
+                controller: 'LogoutController'
+            });
+
+            $routeProvider.when('/profile/password', {
+                templateUrl: 'templates/user/change-password.html',
+                controller: 'ChangePasswordController'
+            });
+
             $routeProvider.otherwise({
                 redirectTo: '/'
             });
         }]
-    )
+    );

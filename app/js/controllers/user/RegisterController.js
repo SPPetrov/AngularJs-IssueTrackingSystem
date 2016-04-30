@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('RegisterController',[
+app.controller('RegisterController', [
     '$scope',
     '$location',
     'authService',
@@ -19,7 +19,7 @@ app.controller('RegisterController',[
                             $location.path('/');
 
                         });
-                },function (error) {
+                }, function (error) {
                     notifyService.showError('Register error', error);
                 });
         };

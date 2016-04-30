@@ -19,7 +19,6 @@ app.controller('DashboardController', [
         $scope.reloadIssuesToView = function () {
             issueService.getMyIssues($scope.issuesParams)
                 .then(function (data) {
-                    console.log(data);
                     $scope.issues = data;
                 }, function (error) {
                     notifyService.showError('Cannot load my issues', error);
@@ -35,7 +34,7 @@ app.controller('DashboardController', [
 
                 allIssues.forEach(function (issue) {
                     var currentIssueProjectId = issue.Project.Id;
-                    if (allIssuesProjectId.indexOf(currentIssueProjectId)<0) {
+                    if (allIssuesProjectId.indexOf(currentIssueProjectId) < 0) {
                         allIssuesProjectId.push(currentIssueProjectId);
                     }
                 });
@@ -60,8 +59,6 @@ app.controller('DashboardController', [
             }, function (error) {
                 notifyService.showError('Cannot load my issues', error);
             });
-
-
 
 
     }

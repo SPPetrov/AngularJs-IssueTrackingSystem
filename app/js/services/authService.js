@@ -1,3 +1,5 @@
+"use strict";
+
 app.factory('authService', [
     '$http',
     '$q',
@@ -34,12 +36,22 @@ app.factory('authService', [
                 return deferred.promise;
             },
             logout: function () {
-                delete sessionStorage['currentUser'];
+                var deferred = $q.defer();
+
+                $http.post(BASE_URL + 'api/Account/Logout', null, {headers: this.getAuthHeaders()})
+                    .then(function (response) {
+                        delete sessionStorage['currentUser'];
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
+
+                return deferred.promise;
             },
             setCurrentUserData: function () {
                 var deferred = $q.defer();
 
-                $http.get(BASE_URL + 'users/me',{headers :this.getAuthHeaders()})
+                $http.get(BASE_URL + 'users/me', {headers: this.getAuthHeaders()})
                     .then(function (response) {
                         var currentUser = JSON.parse(sessionStorage['currentUser']);
                         currentUser['isAdmin'] = response.data.isAdmin;

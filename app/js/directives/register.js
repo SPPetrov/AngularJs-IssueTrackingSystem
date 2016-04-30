@@ -1,3 +1,5 @@
+"use strict";
+
 app.directive('register', function () {
     return{
         restrict: 'A',
