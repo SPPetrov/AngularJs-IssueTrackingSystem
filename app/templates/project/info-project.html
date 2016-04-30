@@ -43,11 +43,11 @@
                                 </tr>
                                 <tr>
                                     <td>Labels</td>
-                                    <td>{{project.Labels}}</td>
+                                    <td>{{project.LabelsToString}}</td>
                                 </tr>
                                 <tr>
                                     <td>Priorities</td>
-                                    <td>{{project.Priorities}}</td>
+                                    <td>{{project.PrioritiesToString}}</td>
                                 </tr>
 
                                 </tbody>
@@ -64,7 +64,6 @@
                                ng-if="((project.Lead.Id==authService.getCurrentUserData().id)||authService.isAdmin())"
                                class="btn btn-warning">
                                 Add issue</a>
-
                         </div>
                     </div>
                 </div>
@@ -84,7 +83,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="issue in issues">
+                                <tr ng-repeat="issue in issues.Issues">
                                     <td><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
                                     <td>{{issue.Assignee.Username}}</td>
                                     <td>{{issue.DueDate|date:"dd-MM-yyyy"}}</td>
@@ -103,7 +102,7 @@
                             <div pagination ng-if="issues.TotalCount>issuesParams.pageSize"
                                  ng-model="issuesParams.pageNumber"
                                  items-per-page="issuesParams.pageSize" total-items="issues.TotalCount"
-                                 ng-change="reloadIssuesToView()" max-size="5" boundary-links="true"></div>
+                                 ng-change="reloadIssuesProjectToView()" max-size="5" boundary-links="true"></div>
                         </div>
                     </div>
                 </div>
