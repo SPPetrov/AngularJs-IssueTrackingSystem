@@ -3,10 +3,10 @@
 app.controller('LogoutController', [
     '$scope',
     '$location',
-    'authService',
+    'userService',
     'notifyService',
-    function ($scope, $location, authService, notifyService) {
-        authService.logout()
+    function ($scope, $location, userService, notifyService) {
+        userService.logout()
             .then(function (data) {
                 notifyService.showInfo('Logout successfully');
                 $location.path('/');

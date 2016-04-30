@@ -2,14 +2,11 @@
 
 app.controller('DashboardController', [
     '$scope',
-    '$location',
-    '$route',
     'issueService',
     'projectService',
     'notifyService',
-    'authService',
     'PAGE_SIZE',
-    function ($scope, $location, $route, issueService, projectService, notifyService, authService, PAGE_SIZE) {
+    function ($scope, issueService, projectService, notifyService, PAGE_SIZE) {
 
         $scope.issuesParams = {
             pageNumber: 1,

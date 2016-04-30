@@ -3,8 +3,6 @@
 app.controller('MainController', [
     '$scope',
     'authService',
-    '$location',
-    'notifyService',
-    function ($scope, authService, $location, notifyService) {
+    function ($scope, authService) {
         $scope.authService = authService;
     }]);

@@ -4,16 +4,17 @@ app.controller('RegisterController', [
     '$scope',
     '$location',
     'authService',
+    'userService',
     'notifyService',
-    function ($scope, $location, authService, notifyService) {
+    function ($scope, $location, authService, userService, notifyService) {
         $scope.register = function (userData) {
-            authService.register(userData)
+            userService.register(userData)
                 .then(function (data) {
                     notifyService.showInfo('Register successfully');
                     userData.username = userData.email;
                     delete userData.email;
 
-                    authService.login(userData)
+                    userService.login(userData)
                         .then(function (data) {
                             authService.setCurrentUserData();
                             $location.path('/');

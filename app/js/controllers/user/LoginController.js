@@ -3,11 +3,12 @@
 app.controller('LoginController', [
     '$scope',
     '$location',
+    'userService',
     'authService',
     'notifyService',
-    function ($scope, $location, authService, notifyService) {
+    function ($scope, $location, userService, authService, notifyService) {
         $scope.login = function (userData) {
-            authService.login(userData)
+            userService.login(userData)
                 .then(function (data) {
                     authService.setCurrentUserData();
                     notifyService.showInfo('Login Successfully');
