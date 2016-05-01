@@ -5,9 +5,10 @@ app.controller('InfoIssueController', [
     '$routeParams',
     'projectService',
     'issueService',
+    'commentService',
     'notifyService',
     'PAGE_SIZE',
-    function ($scope, $routeParams, projectService, issueService, notifyService, PAGE_SIZE) {
+    function ($scope, $routeParams, projectService, issueService, commentService, notifyService, PAGE_SIZE) {
 
 
         function loadIssueToView () {
@@ -23,6 +24,17 @@ app.controller('InfoIssueController', [
                         .then(function (projectData) {
                             issueData.issueProjectLeaderId = projectData.Lead.Id;
                             $scope.issue = issueData;
+
+                            var currentIssueId = issueData.Id;
+
+                            commentService.getCommentsById(currentIssueId)
+                                .then(function (commentData) {
+                                    console.log(commentData);
+                                    $scope.comments = commentData;
+                                }, function (error) {
+                                    notifyService.showError('Cannot load comments');
+                                });
+
                         }, function (error) {
                             notifyService.showError('Cannot load project info for this issue', error);
                         });
