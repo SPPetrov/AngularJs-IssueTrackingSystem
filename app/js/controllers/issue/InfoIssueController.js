@@ -29,7 +29,6 @@ app.controller('InfoIssueController', [
 
                             commentService.getCommentsById(currentIssueId)
                                 .then(function (commentData) {
-                                    console.log(commentData);
                                     $scope.comments = commentData;
                                 }, function (error) {
                                     notifyService.showError('Cannot load comments');
@@ -56,6 +55,17 @@ app.controller('InfoIssueController', [
                     notifyService.showError('Cannot change status', error);
                 });
         };
+
+        $scope.addComment = function (issueId, comment){
+            commentService.addCommentToIssue(issueId, comment)
+                .then(function (commentData) {
+                    loadIssueToView();
+                }, function (error) {
+                    notifyService.showError('Cannot add comment to issue!')
+                });
+        }
+
+
 
 
 

@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title text-center">Issue Details</h3>
@@ -76,10 +76,6 @@
                                ng-if="((issue.Assignee.Id==authService.getCurrentUserData().id)||(issue.issueProjectLeaderId==authService.getCurrentUserData().id)||(authService.isAdmin()))"
                                class="btn btn-primary">
                                 Edit Issue</a>
-                            <a href="#/issues/{{issue.Id}}/comments"
-                               ng-if="((issue.Assignee.Id==authService.getCurrentUserData().id)||(issue.issueProjectLeaderId==authService.getCurrentUserData().id))"
-                               class="btn btn-warning">
-                                Add Comment</a>
                         </div>
                     </div>
                     <div class="panel panel-primary">
@@ -92,11 +88,10 @@
                                     ng-click="changeIssueStatus(issue.Id, status.Id)"
                                     class="btn btn-primary margin-right-10">{{status.Name}}
                             </button>
-
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="row">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -105,33 +100,57 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div>
+                            <div class="panel panel-success"
+                                 ng-if="((issue.Assignee.Id==authService.getCurrentUserData().id)||(issue.issueProjectLeaderId==authService.getCurrentUserData().id))">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title">Add Comment</h1>
+                                </div>
+                                <div class="form-group panel-body">
+                                    <form name="commentForm">
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" rows="3" id="textArea" ng-model="comment"
+                                                      required></textarea>
+                                        </div>
+                                        <div class="col-md-2 control-label">
+                                            <button ng-click="addComment(issue.Id, comment)"
+                                                    ng-disabled="commentForm.$invalid" class="btn btn-warning">Add
+                                                Comment
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <div ng-repeat="comment in comments">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h1 class="panel-title">Author: {{comment.Author.Username}} - {{comment.CreatedOn | date:'dd-MM-yyyy HH:mm' }}</h1>
+                                    <h1 class="panel-title">Author: {{comment.Author.Username}} - {{comment.CreatedOn |
+                                        date:'dd-MM-yyyy HH:mm' }}</h1>
                                 </div>
                                 <div class="panel-body">
                                     <p>{{comment.Text}}</p>
                                 </div>
                             </div>
-
                         </div>
                         <div ng-if="comments.length==0">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h1 class="panel-title">No comment</h1>
                                 </div>
-                                <!--<div class="panel-body">-->
-                                    <!---->
-                                <!--</div>-->
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
