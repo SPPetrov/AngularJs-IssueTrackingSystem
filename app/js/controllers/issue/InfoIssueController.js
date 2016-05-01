@@ -29,7 +29,23 @@ app.controller('InfoIssueController', [
 
                             commentService.getCommentsById(currentIssueId)
                                 .then(function (commentData) {
-                                    $scope.comments = commentData;
+                                    commentData = commentData.reverse();
+
+                                    $scope.commentsParams = {
+                                        pageNumber: 1,
+                                        pageSize: 3,
+                                        totalItem:commentData.length
+                                    };
+
+                                    $scope.reloadCommentsToView = function () {
+                                        $scope.comments = commentData.slice(
+                                            ($scope.commentsParams.pageNumber-1)*$scope.commentsParams.pageSize,
+                                            $scope.commentsParams.pageNumber*$scope.commentsParams.pageSize
+                                        );
+                                    };
+
+                                    $scope.reloadCommentsToView();
+
                                 }, function (error) {
                                     notifyService.showError('Cannot load comments');
                                 });

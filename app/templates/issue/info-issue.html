@@ -140,6 +140,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="text-center">
+                            <div pagination  ng-model="commentsParams.pageNumber"
+                                 items-per-page="commentsParams.pageSize" total-items="commentsParams.totalItem"
+                                 ng-change="reloadCommentsToView()" max-size="9" boundary-links="true"></div>
+                        </div>
                     </div>
                 </div>
             </div>
