@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title text-center">Issue Details</h3>
@@ -63,7 +63,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Priorities</strong></td>
-                                    <td>{{project.PrioritiesToString}}</td>
+                                    <td>{{issue.Priority.Name}}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -73,7 +73,7 @@
                         <div class="panel-body text-center">
                             <a href="#/projects/{{issue.Project.Id}}" class="btn btn-primary">Back To Project</a>
                             <a href="#/issues/{{issue.Id}}/edit"
-                               ng-if="((issue.Assignee.Id==authService.getCurrentUserData().id)||(issue.issueProjectLeaderId==authService.getCurrentUserData().id)||(authService.isAdmin()))"
+                               ng-if="((issue.issueProjectLeaderId==authService.getCurrentUserData().id)||(authService.isAdmin()))"
                                class="btn btn-warning">
                                 Edit Issue</a>
                         </div>
@@ -83,7 +83,7 @@
                             <h1 class="panel-title text-center">Status transition scheme</h1>
                         </div>
                         <div class="panel-body text-center"
-                             ng-if="((issue.Assignee.Id==authService.getCurrentUserData().id)||(issue.issueProjectLeaderId==authService.getCurrentUserData().id))">
+                             ng-if="((issue.Assignee.Id==authService.getCurrentUserData().id)||(issue.issueProjectLeaderId==authService.getCurrentUserData().id)||(authService.isAdmin()))">
                             <button ng-repeat="status in issue.AvailableStatuses"
                                     ng-click="changeIssueStatus(issue.Id, status.Id)"
                                     class="btn btn-primary margin-right-10">{{status.Name}}
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="row">
                         <div class="panel panel-primary">
                             <div class="panel-heading">

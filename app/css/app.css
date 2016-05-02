@@ -11,13 +11,24 @@ body {
     margin-right: 10px;
 }
 
-.padding-top-80 {
-    padding-top: 80px;
+.padding-top-40 {
+    padding-top: 40px;
 }
 
 .error{
     color: coral;
 }
+
+select:required:invalid {
+    color: #8f8f8f;
+}
+option[value=""][disabled] {
+    display: none;
+}
+option {
+    color: black;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;

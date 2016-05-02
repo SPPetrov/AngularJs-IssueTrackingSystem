@@ -1,3 +1,14 @@
-/**
- * Created by Stoyko on 5/2/2016.
- */
+"use strict";
+
+app.controller('ProjectAddController', [
+    '$scope',
+    '$routeParams',
+    'projectService',
+    'issueService',
+    'commentService',
+    'notifyService',
+    'PAGE_SIZE',
+    function ($scope, $routeParams, projectService, issueService, commentService, notifyService, PAGE_SIZE) {
+
+    }
+]);

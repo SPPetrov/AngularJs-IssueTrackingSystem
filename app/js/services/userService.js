@@ -72,6 +72,30 @@ app.factory('userService', [
                     });
 
                 return deferred.promise;
+            },
+            getAllUsers: function () {
+            var deferred = $q.defer();
+
+            $http.get(BASE_URL + 'Users/', {headers: authService.getAuthHeaders()})
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }, function (error) {
+                    deferred.reject(error.data);
+                });
+
+            return deferred.promise;
+            },
+            getUserIdFromUsername: function (userName) {
+                var deferred = $q.defer();
+
+                $http.get(BASE_URL + 'Users/?filter=Username="' + userName + '"', {headers: authService.getAuthHeaders()})
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
+
+                return deferred.promise;
             }
 
         };

@@ -1,0 +1,116 @@
+<div class="row margin-top-80">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title text-center">Issue Tracker - Add Issue</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 well bs-component padding-top-40">
+
+
+                                <form name="addIssueForm" class="form-horizontal">
+                                    <fieldset>
+                                        <legend>Add Issue</legend>
+
+                                        <div class="form-group">
+                                            <label for="title" class="col-lg-2 control-label">Title</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" name="title" class="form-control" id="title" ng-model="issue.title"
+                                                       placeholder="Title" required="required">
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addIssueForm.title.$error.required&&addIssueForm.title.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="textArea" class="col-lg-2 control-label">Description</label>
+                                            <div class="col-lg-10">
+                                                <textarea class="form-control" name="description" rows="3" id="textArea" ng-model="issue.description"
+                                                          required="required" placeholder="Description"></textarea>
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addIssueForm.description.$error.required&&addIssueForm.description.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="assignee" class="col-lg-2 control-label">Assignee</label>
+                                            <div class="col-lg-10">
+                                                <input ng-model="issue.username" list="users" type="" name="assignee" class="form-control" id="assignee"
+                                                       placeholder="Assignee" required="required">
+                                                <datalist id="users">
+                                                    <option ng-repeat="user in users | orderBy:'Username'" value="{{user.Username}}">
+                                                </datalist>
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addIssueForm.assignee.$error.required&&addIssueForm.assignee.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="project" class="col-lg-2 control-label">Project</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control" id="project" ng-model="project.Name"
+                                                       placeholder="Project" required="required" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dueDate" class="col-lg-2 control-label">Due Date</label>
+                                            <div class="col-lg-10">
+                                                <input date-picker name="dueDate" class="form-control" id="dueDate" ng-model="issue.dueDate"
+                                                       placeholder="dd-mm-yyyy">
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addIssueForm.dueDate.$error.required&&addIssueForm.dueDate.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="priorities" class="col-lg-2 control-label">Priorities</label>
+
+
+                                            <div class="col-lg-10">
+                                                <select class="form-control" name="priorities" id="priorities" ng-model="issue.priorityId" required="required">
+                                                <option value="" disabled selected hidden>Priority...</option>
+                                                <option ng-repeat="priority in project.Priorities" value="{{priority.Id}}">{{priority.Name}}</option>
+                                            </select>
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addIssueForm.priorities.$error.required&&addIssueForm.priorities.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="labels" class="col-lg-2 control-label">Labels</label>
+                                            <div class="col-lg-10">
+                                                <input ng-model="issue.labels" list="allLabels" type="" name="label" class="form-control" id="labels"
+                                                       placeholder="Labels (comma separated)" required="required">
+                                                <datalist id="allLabels">
+                                                    <option ng-repeat="label in labels | orderBy:'Name'" value="{{label.Name}}">
+                                                </datalist>
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addIssueForm.label.$error.required&&addIssueForm.label.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12 text-center">
+                                                <a href="#/projects/{{project.Id}}" class="btn btn-default">Cancel</a>
+                                                <button ng-click="addIssue(issue)" ng-disabled="addIssueForm.$invalid" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
