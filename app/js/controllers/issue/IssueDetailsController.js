@@ -73,11 +73,14 @@ app.controller('IssueDetailsController', [
         };
 
         $scope.addComment = function (issueId, comment){
-            commentService.addCommentToIssue(issueId, comment)
+            var data = {
+                Text: comment
+            };
+            commentService.addCommentToIssue(issueId, data)
                 .then(function (commentData) {
                     loadIssueToView();
                 }, function (error) {
-                    notifyService.showError('Cannot add comment to issue!')
+                    notifyService.showError('Cannot add comment to issue!');
                 });
         }
 

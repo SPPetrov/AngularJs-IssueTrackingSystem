@@ -19,11 +19,9 @@ app.factory('commentService', [
 
                 return deferred.promise;
             },
-            addCommentToIssue: function (issueId, comment) {
+            addCommentToIssue: function (issueId, data) {
                 var deferred = $q.defer();
-                var data = {
-                    Text: comment
-                };
+
                 $http.post(BASE_URL + 'Issues/' + issueId + '/comments', data, {headers: authService.getAuthHeaders()})
                     .then(function (response) {
                         deferred.resolve(response.data);

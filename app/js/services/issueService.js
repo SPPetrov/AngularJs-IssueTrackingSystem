@@ -6,7 +6,7 @@ app.factory('issueService', [
     'authService',
     'BASE_URL',
     function ($http, $q, authService, BASE_URL) {
-         return {
+        return {
             getMyIssues: function (params) {
                 var deferred = $q.defer();
                 var filterUrl = 'orderBy=DueDate desc, IssueKey' + '&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber;
@@ -56,8 +56,30 @@ app.factory('issueService', [
                     });
 
                 return deferred.promise;
+            },
+            addIssue: function (data) {
+            var deferred = $q.defer();
+
+            $http.post(BASE_URL + 'Issues/', data, {headers: authService.getAuthHeaders()})
+             .then(function (response) {
+                 deferred.resolve(response.data);
+             }, function (error) {
+                 deferred.reject(error.data);
+             });
+
+            return deferred.promise;
+            },
+            editIssue: function (issueId, data) {
+                var deferred = $q.defer();
+
+                $http.put(BASE_URL + 'Issues/' + issueId, data, {headers: authService.getAuthHeaders()})
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
+
+                return deferred.promise;
             }
-
-
         };
     }]);

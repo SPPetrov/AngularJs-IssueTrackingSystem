@@ -60,7 +60,20 @@ app.factory('userService', [
                 });
 
             return deferred.promise;
+            },
+            makeAdmin: function (userData) {
+                var deferred = $q.defer();
+
+                $http.put(BASE_URL + 'Users/makeadmin', userData)
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
+
+                return deferred.promise;
             }
+
         };
     }
 ]);

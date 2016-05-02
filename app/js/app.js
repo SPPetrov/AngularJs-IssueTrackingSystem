@@ -26,6 +26,11 @@ var app = angular.module('IssueTracker',[
                 controller: 'ProjectAllController'
             });
 
+            $routeProvider.when('/projects/add', {
+                templateUrl: 'templates/project/project-add.html',
+                controller: 'ProjectAddController'
+            });
+
             $routeProvider.when('/projects/:id', {
                 templateUrl: 'templates/project/project-details.html',
                 controller: 'ProjectDetailsController'
@@ -41,10 +46,13 @@ var app = angular.module('IssueTracker',[
                 controller: 'IssueAddController'
             });
 
+
             $routeProvider.when('/issues/:id/edit', {
                 templateUrl: 'templates/issue/issue-edit.html',
                 controller: 'IssueEditController'
             });
+
+
 
             $routeProvider.when('/issues/:id', {
                 templateUrl: 'templates/issue/issue-details.html',

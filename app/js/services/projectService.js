@@ -54,6 +54,30 @@ app.factory('projectService', [
                     });
 
                 return deferred.promise;
+            },
+            addProject: function (data) {
+                var deferred = $q.defer();
+
+                $http.post(BASE_URL + 'Projects/', data, {headers: authService.getAuthHeaders()})
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
+
+                return deferred.promise;
+            },
+            editProject: function (projectId, data) {
+                var deferred = $q.defer();
+
+                $http.put(BASE_URL + 'Projects/' + projectId, data, {headers: authService.getAuthHeaders()})
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
+
+                return deferred.promise;
             }
         };
     }]);

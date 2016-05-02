@@ -19,16 +19,11 @@ app.controller('ProjectAllController', [
             projectService.getAllProjects($scope.projectsParams)
                 .then(function (data) {
                     $scope.projects = data;
-                    console.log(data);
                 }, function (error) {
                     notifyService.showError('Cannot load projects', error);
                 });
         };
 
         $scope.reloadProjectsToView();
-
-
     }
-
-
 ]);

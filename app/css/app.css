@@ -11,6 +11,10 @@ body {
     margin-right: 10px;
 }
 
+.padding-top-80 {
+    padding-top: 80px;
+}
+
 .error{
     color: coral;
 }
