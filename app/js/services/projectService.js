@@ -29,6 +29,20 @@ app.factory('projectService', [
 
                 return deferred.promise;
             },
+            getAllProjects: function (params) {
+                var deferred = $q.defer();
+
+                var filterUrl = 'filter=&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber;
+
+                $http.get(BASE_URL + 'Projects/?' + filterUrl, {headers: authService.getAuthHeaders()})
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
+
+                return deferred.promise;
+            },
             getProjectById: function (id) {
                 var deferred = $q.defer();
 

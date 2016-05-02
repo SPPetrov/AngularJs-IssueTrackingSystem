@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('InfoIssueController', [
+app.controller('IssueDetailsController', [
     '$scope',
     '$routeParams',
     'projectService',

@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title text-center">Project Details</h3>
@@ -46,7 +46,7 @@
                                     <td>{{project.LabelsToString}}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Priorities</strong></td>
+                                    <td><strong></strong></td>
                                     <td>{{project.PrioritiesToString}}</td>
                                 </tr>
 
@@ -58,16 +58,16 @@
                         <div class="panel-body text-center">
                             <a href="#/projects/{{project.Id}}/edit"
                                ng-if="((project.Lead.Id==authService.getCurrentUserData().id)||authService.isAdmin())"
-                               class="btn btn-primary">
+                               class="btn btn-warning">
                                 Edit Project</a>
                             <a href="#/projects/{{project.Id}}/add-issue"
                                ng-if="((project.Lead.Id==authService.getCurrentUserData().id)||authService.isAdmin())"
-                               class="btn btn-warning">
+                               class="btn btn-success">
                                 Add issue</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title text-center">Issues</h3>

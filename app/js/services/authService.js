@@ -3,8 +3,9 @@
 app.factory('authService', [
     '$http',
     '$q',
+    '$location',
     'BASE_URL',
-    function ($http, $q, BASE_URL) {
+    function ($http, $q, $location, BASE_URL) {
         return {
             setCurrentUserData: function () {
                 var deferred = $q.defer();
@@ -39,6 +40,16 @@ app.factory('authService', [
                 var currentUser = this.getCurrentUserData();
 
                 return (currentUser != undefined) && (!currentUser.isAdmin);
+            },
+            rejectNotAdminUser: function () {
+                if (!this.isAdmin()){
+                    $location.path('/');
+                }
+            },
+            rejectNotLoginUser: function () {
+                if (!this.isLoggedIn()){
+                    $location.path('/');
+                }
             },
             isAdmin: function () {
                 var currentUser = this.getCurrentUserData();

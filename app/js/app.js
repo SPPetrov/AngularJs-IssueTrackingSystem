@@ -21,14 +21,34 @@ var app = angular.module('IssueTracker',[
                 controller: 'ChangePasswordController'
             });
 
+            $routeProvider.when('/projects', {
+                templateUrl: 'templates/project/project-all.html',
+                controller: 'ProjectAllController'
+            });
+
             $routeProvider.when('/projects/:id', {
-                templateUrl: 'templates/project/info-project.html',
-                controller: 'InfoProjectController'
+                templateUrl: 'templates/project/project-details.html',
+                controller: 'ProjectDetailsController'
+            });
+
+            $routeProvider.when('/projects/:id/edit', {
+                templateUrl: 'templates/project/project-edit.html',
+                controller: 'ProjectEditController'
+            });
+
+            $routeProvider.when('/projects/:id/add-issue', {
+                templateUrl: 'templates/issue/issue-add.html',
+                controller: 'IssueAddController'
+            });
+
+            $routeProvider.when('/issues/:id/edit', {
+                templateUrl: 'templates/issue/issue-edit.html',
+                controller: 'IssueEditController'
             });
 
             $routeProvider.when('/issues/:id', {
-                templateUrl: 'templates/issue/info-issue.html',
-                controller: 'InfoIssueController'
+                templateUrl: 'templates/issue/issue-details.html',
+                controller: 'IssueDetailsController'
             });
 
             $routeProvider.otherwise({
