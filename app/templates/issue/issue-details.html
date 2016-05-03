@@ -73,7 +73,7 @@
                         <div class="panel-body text-center">
                             <a href="#/projects/{{issue.Project.Id}}" class="btn btn-primary">Back To Project</a>
                             <a href="#/issues/{{issue.Id}}/edit"
-                               ng-if="((issue.issueProjectLeaderId==authService.getCurrentUserData().id)||(authService.isAdmin()))"
+                               ng-if="((issue.Assignee.Id==authService.getCurrentUserData().id)||(issue.issueProjectLeaderId==authService.getCurrentUserData().id)||(authService.isAdmin()))"
                                class="btn btn-warning">
                                 Edit Issue</a>
                         </div>

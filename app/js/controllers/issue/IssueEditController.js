@@ -4,72 +4,121 @@ app.controller('IssueEditController', [
     '$scope',
     '$routeParams',
     '$location',
-    'authService',
     'projectService',
     'issueService',
-    'commentService',
+    'userService',
+    'authService',
+    'labelService',
     'notifyService',
-    'PAGE_SIZE',
-    function ($scope, $routeParams, $location, authService, projectService, issueService, commentService, notifyService, PAGE_SIZE) {
+    function ($scope, $routeParams, $location, projectService, issueService, userService, authService, labelService, notifyService) {
+
+        userService.getAllUsers()
+            .then(function (data) {
+                $scope.users = data;
+            }, function (error) {
+                notifyService.showError('Load users data failed', error);
+            });
+
+        labelService.getAllLabels()
+            .then(function (data) {
+                $scope.labels = data;
+            }, function (error) {
+                notifyService.showError('Load labels failed');
+            });
+
         var issueId = $routeParams.id;
 
 
+        issueService.getIssueById($routeParams.id)
+            .then(function (issueData) {
+
+                var currentProjectId = issueData.Project.Id;
+
+                projectService.getProjectById(currentProjectId)
+                    .then(function (projectData) {
+
+                        var currentUserId = authService.getCurrentUserData().id;
+
+                        if ((currentUserId != projectData.Lead.Id) && (currentUserId != issueData.Assignee.Id) && (!authService.isAdmin())) {
+                            $location.path('/');
+                        }
+
+                        $scope.priorities = projectData.Priorities;
+
+                        $scope.isEditAllow = (projectData.Lead.Id == currentUserId || authService.isAdmin());
+
+                        issueData.Labels = issueData.Labels.map(function (label) {
+                            return label.Name;
+                        }).join(', ');
+
+                        var date = issueData.DueDate.slice(0, 10).split("-");
+                        var dateReformat = date[2] + '-' + date[1] + '-' + date[0];
+                        issueData.DueDate = dateReformat;
+
+                        $scope.issue = issueData;
+
+                    }, function (error) {
+                        notifyService.showError('Load project info for this issue failed', error);
+                    });
+            }, function (error) {
+                notifyService.showError('Load issue failed!', error);
+            });
 
 
+        $scope.changeIssueStatus = function (issueId, statusId) {
+            issueService.changeStatusIssue(issueId, statusId)
+                .then(function (statusData) {
+                    $scope.issue.AvailableStatuses = statusData;
 
-                function loadIssueToEdit () {
-                    issueService.getIssueById($routeParams.id)
-                        .then(function (issueData) {
-                            if ((authService.getCurrentUserData().id != issueData.Author.Id)
-                                && (authService.getCurrentUserData().id != issueData.Assignee.Id)
-                                && (!authService.isAdmin())) {
-                                $location.path('/');
-                            }
+                }, function (error) {
+                    notifyService.showError('Cannot change status', error);
+                });
+        };
 
+        $scope.editIssue = function (issueData) {
 
+            userService.getUserIdFromUsername(issueData.Assignee.Username)
+                .then(function (data) {
+                    var assigneeId = data[0].Id;
 
+                    var issue = {};
 
-                            issueData.labels = issueData.Labels.map(function (label) {
-                                return label.Name;
-                            }).join(', ');
+                    issue.Title = issueData.Title;
+                    issue.Description = issueData.Description;
 
-                            var currentProjectId = issueData.Project.Id;
+                    var date = issueData.DueDate.split("-");
+                    var dateReformat = date[2] + '/' + date[1] + '/' + date[0];
+                    issue.DueDate = dateReformat;
 
-                            projectService.getProjectById(currentProjectId)
-                                .then(function (projectData) {
-                                    issueData.issueProjectLeaderId = projectData.Lead.Id;
-                                    issueData.dueDate = new Date(issueData.DueDate)
-                                    $scope.issue = issueData;
+                    issue.AssigneeId = assigneeId;
+                    issue.PriorityId = issueData.Priority.Id;
 
+                    var labels = issueData.Labels.trim().split(/\s*,\s*/);
+                    issue.Labels = [];
+                    labels.forEach(function (label) {
+                        issue.Labels.push({Name:label});
+                    });
 
-
-
-                                }, function (error) {
-                                    notifyService.showError('Cannot load project info for this issue', error);
-                                });
-
-
+                    issueService.editIssue(issueId, issue)
+                        .then(function (data) {
+                            notifyService.showInfo('Edit issue successfully');
+                            $location.path('/issues/' + issueId);
                         }, function (error) {
-                            notifyService.showError('Load issue failed!', error);
+                            notifyService.showError('Edit issue failed', error);
                         });
-                }
 
-                loadIssueToEdit();
 
-                $scope.changeIssueStatus = function (issueId, statusId) {
-                    issueService.changeStatusIssue(issueId, statusId)
-                        .then(function (statusData) {
-                            $scope.issue.AvailableStatuses = statusData;
-                            loadIssueToEdit();
-                        }, function (error) {
-                            notifyService.showError('Cannot change status', error);
-                        });
-                };
+
+
+                }, function (error) {
+                    notifyService.showError('Load current assignee data failed');
+                });
 
 
 
 
 
 
+        };
     }
 ]);

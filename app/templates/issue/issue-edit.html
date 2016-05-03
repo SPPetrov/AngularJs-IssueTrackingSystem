@@ -15,121 +15,120 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6 col-md-offset-3 well bs-component padding-top-40">
-
-
-                                <form name="addIssueForm" class="form-horizontal">
+                                <form name="editIssueForm" class="form-horizontal">
                                     <fieldset>
                                         <legend>Edit Issue</legend>
-
                                         <div class="form-group">
                                             <label for="title" class="col-lg-2 control-label">Title</label>
                                             <div class="col-lg-10">
-                                                <input type="text" name="title" class="form-control" id="title" ng-model="issue.title"
+                                                <input type="text" name="title" class="form-control" id="title" ng-disabled="(!isEditAllow)"
+                                                       ng-model="issue.Title"
                                                        placeholder="Title" required="required">
                                             </div>
                                             <div class="col-md-12 text-center" role="alert">
-                                                <span class="error" ng-show="addIssueForm.title.$error.required&&addIssueForm.title.$dirty">Required!</span>
+                                                <span class="error"
+                                                      ng-show="editIssueForm.title.$error.required&&editIssueForm.title.$dirty">Required!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="textArea" class="col-lg-2 control-label">Description</label>
                                             <div class="col-lg-10">
-                                                <textarea class="form-control" name="description" rows="3" id="textArea" ng-model="issue.description"
+                                                <textarea class="form-control" name="description" rows="3" id="textArea" ng-disabled="(!isEditAllow)"
+                                                          ng-model="issue.Description"
                                                           required="required" placeholder="Description"></textarea>
                                             </div>
                                             <div class="col-md-12 text-center" role="alert">
-                                                <span class="error" ng-show="addIssueForm.description.$error.required&&addIssueForm.description.$dirty">Required!</span>
+                                                <span class="error"
+                                                      ng-show="editIssueForm.description.$error.required&&editIssueForm.description.$dirty">Required!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="assignee" class="col-lg-2 control-label">Assignee</label>
                                             <div class="col-lg-10">
-                                                <input ng-model="issue.username" list="users" type="" name="assignee" class="form-control" id="assignee"
+                                                <input ng-model="issue.Assignee.Username" list="users" type="" ng-disabled="(!isEditAllow)"
+                                                       name="assignee" class="form-control" id="assignee"
                                                        placeholder="Assignee" required="required">
                                                 <datalist id="users">
-                                                    <option ng-repeat="user in users | orderBy:'Username'" value="{{user.Username}}">
+                                                    <option ng-repeat="user in users | orderBy:'Username'"
+                                                            value="{{user.Username}}">
                                                 </datalist>
                                             </div>
                                             <div class="col-md-12 text-center" role="alert">
-                                                <span class="error" ng-show="addIssueForm.assignee.$error.required&&addIssueForm.assignee.$dirty">Required!</span>
+                                                <span class="error"
+                                                      ng-show="editIssueForm.assignee.$error.required&&editIssueForm.assignee.$dirty">Required!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="project" class="col-lg-2 control-label">Project</label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="project" ng-model="project.Name"
+                                                <input type="text" class="form-control" id="project"
+                                                       ng-model="issue.Project.Name"
                                                        placeholder="Project" required="required" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="dueDate" class="col-lg-2 control-label">Due Date</label>
                                             <div class="col-lg-10">
-                                                <input date-picker name="dueDate" class="form-control" id="dueDate" ng-model="issue.dueDate"
+                                                <input date-picker name="dueDate" class="form-control" id="dueDate" ng-disabled="(!isEditAllow)"
+                                                       ng-model="issue.DueDate"
                                                        placeholder="dd-mm-yyyy">
                                             </div>
                                             <div class="col-md-12 text-center" role="alert">
-                                                <span class="error" ng-show="addIssueForm.dueDate.$error.required&&addIssueForm.dueDate.$dirty">Required!</span>
+                                                <span class="error"
+                                                      ng-show="editIssueForm.dueDate.$error.required&&editIssueForm.dueDate.$dirty">Required!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="priorities" class="col-lg-2 control-label">Priorities</label>
-
-
                                             <div class="col-lg-10">
-                                                <select class="form-control" name="priorities" id="priorities" ng-model="issue.priorityId" required="required">
-                                                    <option value="" disabled selected hidden>Priority...</option>
-                                                    <option ng-repeat="priority in project.Priorities" value="{{priority.Id}}">{{priority.Name}}</option>
+                                                <select class="form-control" name="priorities" id="priorities" ng-disabled="(!isEditAllow)"
+                                                        ng-model="issue.Priority.Id" required="required"
+                                                        ng-options="priority.Id as priority.Name for priority in priorities"
+                                                        required="required">
                                                 </select>
                                             </div>
                                             <div class="col-md-12 text-center" role="alert">
-                                                <span class="error" ng-show="addIssueForm.priorities.$error.required&&addIssueForm.priorities.$dirty">Required!</span>
+                                                <span class="error"
+                                                      ng-show="editIssueForm.priorities.$error.required&&editIssueForm.priorities.$dirty">Required!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="labels" class="col-lg-2 control-label">Labels</label>
                                             <div class="col-lg-10">
-                                                <input ng-model="issue.labels" list="allLabels" type="" name="label" class="form-control" id="labels"
+                                                <input ng-model="issue.Labels" list="allLabels" type="" name="label" ng-disabled="(!isEditAllow)"
+                                                       class="form-control" id="labels"
                                                        placeholder="Labels (comma separated)" required="required">
                                                 <datalist id="allLabels">
-                                                    <option ng-repeat="label in labels | orderBy:'Name'" value="{{label.Name}}">
+                                                    <option ng-repeat="label in labels | orderBy:'Name'"
+                                                            value="{{label.Name}}">
                                                 </datalist>
                                             </div>
                                             <div class="col-md-12 text-center" role="alert">
-                                                <span class="error" ng-show="addIssueForm.label.$error.required&&addIssueForm.label.$dirty">Required!</span>
+                                                <span class="error"
+                                                      ng-show="editIssueForm.label.$error.required&&editIssueForm.label.$dirty">Required!</span>
                                             </div>
                                         </div>
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
-                                                <h1 class="panel-title text-center">Status transition scheme</h1>
+                                                <h1 class="panel-title text-center">Status transition scheme - Set status to:</h1>
                                             </div>
                                             <div class="panel-body text-center">
-                                                <table class="table table-striped table-hover ">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="text-center">Status :  {{issue.Status.Name}}  </th>
-
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>
-                                                        <button ng-repeat="status in issue.AvailableStatuses"
-                                                                ng-click="changeIssueStatus(issue.Id, status.Id)"
-                                                                class="btn  btn-primary margin-right-10">{{status.Name}}
-                                                        </button>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                                <button ng-repeat="status in issue.AvailableStatuses"
+                                                        ng-click="changeIssueStatus(issue.Id, status.Id)"
+                                                        class="btn btn-sm btn-primary margin-right-10">
+                                                    {{status.Name}}
+                                                </button>
                                             </div>
-                                            <!--<div class="panel-body text-center">-->
-                                                <!---->
-                                            <!--</div>-->
                                         </div>
-                                        <div class="form-group" ng-if="((issue.issueProjectLeaderId==authService.getCurrentUserData().id)||(authService.isAdmin()))">
-                                            <div class="col-lg-12 text-center">
-                                                <a href="#/projects/{{project.Id}}" class="btn btn-default">Cancel</a>
-                                                <button ng-click="editIssue(issue)" ng-disabled="addIssueForm.$invalid" class="btn btn-primary">Save</button>
+                                        <div class="form-group">
+                                            <div  class="col-lg-12 text-center" ng-if="(!isEditAllow)">
+                                                <a  href="#/issues/{{issue.Id}}" class="btn btn-primary">Back To Issue</a>
+                                            </div>
+                                            <div class="col-lg-12 text-center" ng-if="(isEditAllow)">
+                                                <a href="#/issues/{{issue.Id}}" class="btn btn-default">Cancel</a>
+                                                <button ng-click="editIssue(issue)" ng-disabled="editIssueForm.$invalid"
+                                                        class="btn btn-primary">Save
+                                                </button>
                                             </div>
                                         </div>
                                     </fieldset>

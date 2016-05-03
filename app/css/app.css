@@ -29,6 +29,10 @@ option {
     color: black;
 }
 
+.btn-small {
+    padding: 2px 10px;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
