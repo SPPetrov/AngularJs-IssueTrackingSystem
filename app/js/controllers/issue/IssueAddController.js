@@ -43,27 +43,27 @@ app.controller('IssueAddController', [
         $scope.addIssue = function (issueData) {
             userService.getUserIdFromUsername(issueData.username)
                 .then(function (data) {
+                    var issue = {};
+
                     var assigneeId = data[0].Id;
-                    delete issueData.username;
-                    issueData.assigneeId = assigneeId;
+                    issue.assigneeId = assigneeId;
 
                     var date = issueData.dueDate.split("-");
-                    var dateFormat = date[2] + '/' + date[1] + '/' + date[0];
-                    delete issueData.dueDate;
-                    issueData.dueDate = dateFormat;
-
-                    issueData.projectId = projectId;
+                    var dateReformat = date[2] + '/' + date[1] + '/' + date[0];
+                    issue.dueDate = dateReformat;
 
                     var labels = issueData.labels.trim().split(/\s*,\s*/);
-                    delete issueData.labels;
-                    issueData.labels=[];
+                    issue.labels = [];
                     labels.forEach(function (label) {
-                        issueData.labels.push({Name:label});
+                        issue.labels.push({Name:label});
                     });
 
-                    console.log(issueData);
+                    issue.projectId = projectId;
+                    issue.title = issueData.title;
+                    issue.description = issueData.description;
+                    issue.priorityId = issueData.priorityId;
 
-                    issueService.addIssue(issueData)
+                    issueService.addIssue(issue)
                         .then(function (data) {
                             notifyService.showInfo('New issue added');
                             $location.path('/projects/' + projectId);
@@ -71,22 +71,9 @@ app.controller('IssueAddController', [
                             notifyService.showError('Add issue failed');
                         });
 
-
-
                 }, function (error) {
                     notifyService.showError('Load current assignee data failed');
                 })
-
-
-
-
-
-
-
-
-
         };
-
-
     }
 ]);
