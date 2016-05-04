@@ -47,7 +47,7 @@ app.controller('ProjectAddController', [
 
                     var priorities = projectData.priorities.trim().split(/\s*,\s*/);
                     project.priorities = [];
-                    labels.forEach(function (priority) {
+                    priorities.forEach(function (priority) {
                         project.priorities.push({Name:priority});
                     });
 
@@ -65,7 +65,7 @@ app.controller('ProjectAddController', [
                         });
 
                 }, function (error) {
-                    notifyService.showError('Load current user data failed');
+                    notifyService.showError('Load current user data failed',error);
                 })
         }
     }
