@@ -8,6 +8,7 @@ app.controller('ProjectAllController', [
     'notifyService',
     'PAGE_SIZE',
     function ($scope, issueService, projectService, authService, notifyService, PAGE_SIZE) {
+
         authService.rejectNotAdminUser();
 
         $scope.projectsParams = {

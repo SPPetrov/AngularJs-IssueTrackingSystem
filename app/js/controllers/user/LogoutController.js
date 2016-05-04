@@ -6,6 +6,7 @@ app.controller('LogoutController', [
     'userService',
     'notifyService',
     function ($scope, $location, userService, notifyService) {
+
         userService.logout()
             .then(function (data) {
                 notifyService.showInfo('Logout successfully');

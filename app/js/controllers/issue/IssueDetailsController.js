@@ -3,15 +3,22 @@
 app.controller('IssueDetailsController', [
     '$scope',
     '$routeParams',
+    '$location',
+    'authService',
     'projectService',
     'issueService',
     'commentService',
     'notifyService',
     'PAGE_SIZE',
-    function ($scope, $routeParams, projectService, issueService, commentService, notifyService, PAGE_SIZE) {
-
+    function ($scope, $routeParams, $location, authService, projectService, issueService, commentService, notifyService, PAGE_SIZE) {
 
         function loadIssueToView () {
+            var issueId = $routeParams.id;
+
+            if (isNaN(issueId)) {
+                $location.path('/');
+            }
+
             issueService.getIssueById($routeParams.id)
                 .then(function (issueData) {
                     issueData.LabelsToString = issueData.Labels.map(function (label) {
@@ -82,11 +89,6 @@ app.controller('IssueDetailsController', [
                 }, function (error) {
                     notifyService.showError('Cannot add comment to issue!');
                 });
-        }
-
-
-
-
-
+        };
     }
 ]);

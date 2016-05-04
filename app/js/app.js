@@ -52,8 +52,6 @@ var app = angular.module('IssueTracker',[
                 controller: 'IssueEditController'
             });
 
-
-
             $routeProvider.when('/issues/:id', {
                 templateUrl: 'templates/issue/issue-details.html',
                 controller: 'IssueDetailsController'
@@ -64,3 +62,12 @@ var app = angular.module('IssueTracker',[
             });
         }]
     );
+
+app.run(function ($rootScope, $location, authService) {
+    $rootScope.$on('$locationChangeStart', function (event) {
+        if (!authService.isLoggedIn()) {
+            // Authorization check: anonymous site visitors cannot access user routes
+            $location.path("/");
+        }
+    });
+});

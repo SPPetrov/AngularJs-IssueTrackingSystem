@@ -28,6 +28,9 @@ app.controller('IssueEditController', [
 
         var issueId = $routeParams.id;
 
+        if (isNaN(issueId)) {
+            $location.path('/');
+        }
 
         issueService.getIssueById($routeParams.id)
             .then(function (issueData) {
@@ -63,7 +66,6 @@ app.controller('IssueEditController', [
             }, function (error) {
                 notifyService.showError('Load issue failed!', error);
             });
-
 
         $scope.changeIssueStatus = function (issueId, statusId) {
             issueService.changeStatusIssue(issueId, statusId)
@@ -107,18 +109,9 @@ app.controller('IssueEditController', [
                             notifyService.showError('Edit issue failed', error);
                         });
 
-
-
-
                 }, function (error) {
                     notifyService.showError('Load current assignee data failed');
                 });
-
-
-
-
-
-
         };
     }
 ]);

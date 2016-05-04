@@ -6,6 +6,8 @@ app.controller('ChangePasswordController',[
     'userService',
     'notifyService',
     function ($scope, $location, userService, notifyService) {
+
+
         $scope.changePassword = function (userData) {
             userService.changePassword(userData)
                 .then(function (data) {

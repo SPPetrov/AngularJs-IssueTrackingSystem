@@ -11,7 +11,12 @@ app.controller('IssueAddController', [
     'labelService',
     'notifyService',
     function ($scope, $routeParams, $location, projectService, issueService, userService, authService, labelService, notifyService) {
+
         var projectId = $routeParams.id;
+
+        if (isNaN(projectId)) {
+            $location.path('/');
+        }
 
         projectService.getProjectById(projectId)
             .then(function (data) {
@@ -73,7 +78,7 @@ app.controller('IssueAddController', [
 
                 }, function (error) {
                     notifyService.showError('Load current assignee data failed');
-                })
+                });
         };
     }
 ]);

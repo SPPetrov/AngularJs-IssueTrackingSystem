@@ -3,11 +3,19 @@
 app.controller('ProjectDetailsController', [
     '$scope',
     '$routeParams',
+    '$location',
+    'authService',
     'projectService',
     'issueService',
     'notifyService',
     'PAGE_SIZE',
-    function ($scope, $routeParams, projectService, issueService, notifyService, PAGE_SIZE) {
+    function ($scope, $routeParams, $location, authService, projectService, issueService, notifyService, PAGE_SIZE) {
+
+        var projectId = $routeParams.id;
+
+        if (isNaN(projectId)) {
+            $location.path('/');
+        }
 
         projectService.getProjectById($routeParams.id)
             .then(function (projectData) {
@@ -16,6 +24,7 @@ app.controller('ProjectDetailsController', [
                 $scope.project = projectData;
 
                 var currentProjectId = projectData.Id;
+
 
                 $scope.issuesParams = {
                     pageNumber: 1,
@@ -36,6 +45,5 @@ app.controller('ProjectDetailsController', [
             }, function (error) {
                 notifyService.showError('Load project failed!', error);
             });
-
     }
 ]);

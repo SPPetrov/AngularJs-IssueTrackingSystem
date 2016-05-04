@@ -12,6 +12,7 @@ app.controller('ProjectAddController', [
     'labelService',
     'notifyService',
     function ($filter, $scope, $routeParams, $location, projectService, issueService, userService, authService, labelService, notifyService) {
+
         authService.rejectNotAdminUser();
 
         userService.getAllUsers()
@@ -29,8 +30,6 @@ app.controller('ProjectAddController', [
             });
 
         $scope.createProject = function (projectData) {
-            console.log(projectData);
-
 
             userService.getUserIdFromUsername(projectData.username)
                 .then(function (data) {
@@ -66,7 +65,7 @@ app.controller('ProjectAddController', [
 
                 }, function (error) {
                     notifyService.showError('Load current user data failed',error);
-                })
-        }
+                });
+        };
     }
 ]);
