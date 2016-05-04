@@ -1,10 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="row margin-top-80">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title text-center">Issue Tracker - Add New Project</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 well bs-component padding-top-40">
 
-</body>
-</html>
+
+                                <form name="addProjectForm" class="form-horizontal">
+                                    <fieldset>
+                                        <legend>Add New Project</legend>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-lg-2 control-label">Name</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" name="name" class="form-control" id="name" ng-model="project.name"
+                                                       set-initials-key="project.projectKey" placeholder="Name" required="required">
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addProjectForm.name.$error.required&&addProjectForm.name.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="textArea" class="col-lg-2 control-label">Description</label>
+                                            <div class="col-lg-10">
+                                                <textarea class="form-control" name="description" rows="3" id="textArea" ng-model="project.description"
+                                                          required="required" placeholder="Description"></textarea>
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addProjectForm.description.$error.required&&addProjectForm.description.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="assignee" class="col-lg-2 control-label">Leader</label>
+                                            <div class="col-lg-10">
+                                                <input ng-model="project.username" list="users" type="" name="leader" class="form-control" id="assignee"
+                                                       placeholder="Leader" required="required">
+                                                <datalist id="users">
+                                                    <option ng-repeat="user in users | orderBy:'Username'" value="{{user.Username}}">
+                                                </datalist>
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addProjectForm.leader.$error.required&&addProjectForm.leader.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="project" class="col-lg-2 control-label">Project Key</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control" id="project" ng-model="project.projectKey"
+                                                       placeholder="Project" required="required" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="priorities" class="col-lg-2 control-label">Priorities</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" name="priorities" class="form-control" id="priorities" ng-model="project.priorities"
+                                                       placeholder="Priorities (comma separated)" required="required">
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addProjectForm.priorities.$error.required&&addProjectForm.priorities.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="labels" class="col-lg-2 control-label">Labels</label>
+                                            <div class="col-lg-10">
+                                                <input ng-model="project.labels" list="allLabels" type="" name="label" class="form-control" id="labels"
+                                                       placeholder="Labels (comma separated)" required="required">
+                                                <datalist id="allLabels">
+                                                    <option ng-repeat="label in labels | orderBy:'Name'" value="{{label.Name}}">
+                                                </datalist>
+                                            </div>
+                                            <div class="col-md-12 text-center" role="alert">
+                                                <span class="error" ng-show="addProjectForm.label.$error.required&&addProjectForm.label.$dirty">Required!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-12 text-center">
+                                                <a href="#/" class="btn btn-default">Cancel</a>
+                                                <button ng-click="createProject(project)" ng-disabled="addProjectForm.$invalid" class="btn btn-primary">Create Project</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
