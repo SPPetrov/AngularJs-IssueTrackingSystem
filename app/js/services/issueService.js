@@ -32,9 +32,9 @@ app.factory('issueService', [
 
                 return deferred.promise;
             },
-            getIssuesByProjectId: function (projectId, params ) {
+            getIssuesByProjectId: function (projectId, params) {
                 var deferred = $q.defer();
-                var filterUrl = 'filter=ProjectId=='+ projectId + '&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber;
+                var filterUrl = 'filter=ProjectId==' + projectId + '&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber;
 
                 $http.get(BASE_URL + 'Issues/?' + filterUrl, {headers: authService.getAuthHeaders()})
                     .then(function (response) {
@@ -58,16 +58,16 @@ app.factory('issueService', [
                 return deferred.promise;
             },
             addIssue: function (data) {
-            var deferred = $q.defer();
+                var deferred = $q.defer();
 
-            $http.post(BASE_URL + 'Issues/', data, {headers: authService.getAuthHeaders()})
-             .then(function (response) {
-                 deferred.resolve(response.data);
-             }, function (error) {
-                 deferred.reject(error.data);
-             });
+                $http.post(BASE_URL + 'Issues/', data, {headers: authService.getAuthHeaders()})
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
 
-            return deferred.promise;
+                return deferred.promise;
             },
             editIssue: function (issueId, data) {
                 var deferred = $q.defer();

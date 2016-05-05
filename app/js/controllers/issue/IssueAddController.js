@@ -41,7 +41,7 @@ app.controller('IssueAddController', [
             .then(function (data) {
                 $scope.labels = data;
             }, function (error) {
-                notifyService.showError('Load labels failed');
+                notifyService.showError('Load labels failed', error);
             });
 
 
@@ -60,7 +60,7 @@ app.controller('IssueAddController', [
                     var labels = issueData.labels.trim().split(/\s*,\s*/);
                     issue.labels = [];
                     labels.forEach(function (label) {
-                        issue.labels.push({Name:label});
+                        issue.labels.push({Name: label});
                     });
 
                     issue.projectId = projectId;
@@ -77,7 +77,7 @@ app.controller('IssueAddController', [
                         });
 
                 }, function (error) {
-                    notifyService.showError('Load current assignee data failed');
+                    notifyService.showError('Load current assignee data failed', error);
                 });
         };
     }

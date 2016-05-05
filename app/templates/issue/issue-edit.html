@@ -21,7 +21,8 @@
                                         <div class="form-group">
                                             <label for="title" class="col-lg-2 control-label">Title</label>
                                             <div class="col-lg-10">
-                                                <input type="text" name="title" class="form-control" id="title" ng-disabled="(!isEditAllow)"
+                                                <input type="text" name="title" class="form-control" id="title"
+                                                       ng-disabled="(!isEditAllow)"
                                                        ng-model="issue.Title"
                                                        placeholder="Title" required="required">
                                             </div>
@@ -33,7 +34,8 @@
                                         <div class="form-group">
                                             <label for="textArea" class="col-lg-2 control-label">Description</label>
                                             <div class="col-lg-10">
-                                                <textarea class="form-control" name="description" rows="3" id="textArea" ng-disabled="(!isEditAllow)"
+                                                <textarea class="form-control" name="description" rows="3" id="textArea"
+                                                          ng-disabled="(!isEditAllow)"
                                                           ng-model="issue.Description"
                                                           required="required" placeholder="Description"></textarea>
                                             </div>
@@ -45,7 +47,8 @@
                                         <div class="form-group">
                                             <label for="assignee" class="col-lg-2 control-label">Assignee</label>
                                             <div class="col-lg-10">
-                                                <input ng-model="issue.Assignee.Username" list="users" type="" ng-disabled="(!isEditAllow)"
+                                                <input ng-model="issue.Assignee.Username" list="users" type=""
+                                                       ng-disabled="(!isEditAllow)"
                                                        name="assignee" class="form-control" id="assignee"
                                                        placeholder="Assignee" required="required">
                                                 <datalist id="users">
@@ -69,7 +72,8 @@
                                         <div class="form-group">
                                             <label for="dueDate" class="col-lg-2 control-label">Due Date</label>
                                             <div class="col-lg-10">
-                                                <input date-picker name="dueDate" class="form-control" id="dueDate" ng-disabled="(!isEditAllow)"
+                                                <input date-picker name="dueDate" class="form-control" id="dueDate"
+                                                       ng-disabled="(!isEditAllow)"
                                                        ng-model="issue.DueDate"
                                                        placeholder="dd-mm-yyyy">
                                             </div>
@@ -81,7 +85,8 @@
                                         <div class="form-group">
                                             <label for="priorities" class="col-lg-2 control-label">Priorities</label>
                                             <div class="col-lg-10">
-                                                <select class="form-control" name="priorities" id="priorities" ng-disabled="(!isEditAllow)"
+                                                <select class="form-control" name="priorities" id="priorities"
+                                                        ng-disabled="(!isEditAllow)"
                                                         ng-model="issue.Priority.Id" required="required"
                                                         ng-options="priority.Id as priority.Name for priority in priorities"
                                                         required="required">
@@ -95,7 +100,8 @@
                                         <div class="form-group">
                                             <label for="labels" class="col-lg-2 control-label">Labels</label>
                                             <div class="col-lg-10">
-                                                <input ng-model="issue.Labels" list="allLabels" type="" name="label" ng-disabled="(!isEditAllow)"
+                                                <input ng-model="issue.Labels" list="allLabels" type="" name="label"
+                                                       ng-disabled="(!isEditAllow)"
                                                        class="form-control" id="labels"
                                                        placeholder="Labels (comma separated)" required="required">
                                                 <datalist id="allLabels">
@@ -110,7 +116,8 @@
                                         </div>
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
-                                                <h1 class="panel-title text-center">Status transition scheme - Set status to:</h1>
+                                                <h1 class="panel-title text-center">Status transition scheme - Set
+                                                    status to:</h1>
                                             </div>
                                             <div class="panel-body text-center">
                                                 <button ng-repeat="status in issue.AvailableStatuses"
@@ -121,8 +128,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div  class="col-lg-12 text-center" ng-if="(!isEditAllow)">
-                                                <a  href="#/issues/{{issue.Id}}" class="btn btn-primary">Back To Issue</a>
+                                            <div class="col-lg-12 text-center" ng-if="(!isEditAllow)">
+                                                <a href="#/issues/{{issue.Id}}" class="btn btn-primary">Back To
+                                                    Issue</a>
                                             </div>
                                             <div class="col-lg-12 text-center" ng-if="(isEditAllow)">
                                                 <a href="#/issues/{{issue.Id}}" class="btn btn-default">Cancel</a>

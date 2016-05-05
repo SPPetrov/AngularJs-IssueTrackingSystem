@@ -23,7 +23,7 @@ app.controller('IssueEditController', [
             .then(function (data) {
                 $scope.labels = data;
             }, function (error) {
-                notifyService.showError('Load labels failed');
+                notifyService.showError('Load labels failed', error);
             });
 
         var issueId = $routeParams.id;
@@ -98,7 +98,7 @@ app.controller('IssueEditController', [
                     var labels = issueData.Labels.trim().split(/\s*,\s*/);
                     issue.Labels = [];
                     labels.forEach(function (label) {
-                        issue.Labels.push({Name:label});
+                        issue.Labels.push({Name: label});
                     });
 
                     issueService.editIssue(issueId, issue)
@@ -110,7 +110,7 @@ app.controller('IssueEditController', [
                         });
 
                 }, function (error) {
-                    notifyService.showError('Load current assignee data failed');
+                    notifyService.showError('Load current assignee data failed', error);
                 });
         };
     }

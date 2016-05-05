@@ -22,16 +22,16 @@
                                 <th>Name</th>
                                 <th>Leader</th>
                                 <th></th>
-
                             </tr>
                             </thead>
                             <tbody>
-
                             <tr ng-repeat="project in projects.Projects">
                                 <td><a href="#/projects/{{project.Id}}">{{project.Name}}</a></td>
                                 <td>{{project.Lead.Username}}</td>
-                                <td><a href="#/projects/{{project.Id}}/edit" class="btn btn-sm btn-small btn-warning">Edit Project</a>
-                                    <a href="#/projects/{{project.Id}}/add-issue" class="btn btn-sm btn-small btn-success">Add Issue</a>
+                                <td><a href="#/projects/{{project.Id}}/edit" class="btn btn-sm btn-small btn-warning">Edit
+                                    Project</a>
+                                    <a href="#/projects/{{project.Id}}/add-issue"
+                                       class="btn btn-sm btn-small btn-success">Add Issue</a>
                                 </td>
                             </tr>
                             <tr ng-if="projects.TotalCount == 0">

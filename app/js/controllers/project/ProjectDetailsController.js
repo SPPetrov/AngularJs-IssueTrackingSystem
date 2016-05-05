@@ -19,12 +19,15 @@ app.controller('ProjectDetailsController', [
 
         projectService.getProjectById($routeParams.id)
             .then(function (projectData) {
-                projectData.PrioritiesToString = projectData.Priorities.map(function(priority) {return priority.Name;}).join(', ');
-                projectData.LabelsToString = projectData.Labels.map(function(label) {return label.Name;}).join(', ');
+                projectData.PrioritiesToString = projectData.Priorities.map(function (priority) {
+                    return priority.Name;
+                }).join(', ');
+                projectData.LabelsToString = projectData.Labels.map(function (label) {
+                    return label.Name;
+                }).join(', ');
                 $scope.project = projectData;
 
                 var currentProjectId = projectData.Id;
-
 
                 $scope.issuesParams = {
                     pageNumber: 1,

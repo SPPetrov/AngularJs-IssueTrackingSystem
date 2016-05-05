@@ -5,26 +5,31 @@
         <div class="form-group">
             <label for="username" class="col-md-5 control-label">Username</label>
             <div class="col-md-7">
-                <input ng-model="loginUser.username" type="text" class="form-control" name="loginUsername" id="username" placeholder="Username" required="required">
+                <input ng-model="loginUser.username" type="text" class="form-control" name="loginUsername" id="username"
+                       placeholder="Username" required="required">
             </div>
             <div class="col-md-12 text-center" role="alert">
-                <span class="error" ng-show="loginUserForm.loginUsername.$error.required&&loginUserForm.loginUsername.$dirty">Required!</span>
+                <span class="error"
+                      ng-show="loginUserForm.loginUsername.$error.required&&loginUserForm.loginUsername.$dirty">Required!</span>
             </div>
         </div>
         <!--password-->
         <div class="form-group">
             <label for="password" class="col-md-5 control-label">Password</label>
             <div class="col-md-7">
-                <input ng-model="loginUser.password" type="password" name="loginPassword" class="form-control" id="password" placeholder="Password" required="required">
+                <input ng-model="loginUser.password" type="password" name="loginPassword" class="form-control"
+                       id="password" placeholder="Password" required="required">
             </div>
             <div class="col-md-12 text-center" role="alert">
-                <span class="error" ng-show="loginUserForm.loginPassword.$error.required&&loginUserForm.loginPassword.$dirty">Required!</span>
+                <span class="error"
+                      ng-show="loginUserForm.loginPassword.$error.required&&loginUserForm.loginPassword.$dirty">Required!</span>
             </div>
         </div>
         <!--button-->
         <div class="form-group">
             <div class="col-md-12 text-center">
-                <button ng-click="login(loginUser)" ng-disabled="loginUserForm.$invalid" class="btn btn-primary">Login</button>
+                <button ng-click="login(loginUser)" ng-disabled="loginUserForm.$invalid" class="btn btn-primary">Login
+                </button>
             </div>
         </div>
     </fieldset>

@@ -50,16 +50,16 @@ app.factory('userService', [
                 return deferred.promise;
             },
             changePassword: function (userData) {
-            var deferred = $q.defer();
+                var deferred = $q.defer();
 
-            $http.post(BASE_URL + 'api/Account/ChangePassword', userData, {headers: authService.getAuthHeaders()})
-                .then(function (response) {
-                    deferred.resolve(response.data);
-                }, function (error) {
-                    deferred.reject(error.data);
-                });
+                $http.post(BASE_URL + 'api/Account/ChangePassword', userData, {headers: authService.getAuthHeaders()})
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
 
-            return deferred.promise;
+                return deferred.promise;
             },
             makeAdmin: function (userData) {
                 var deferred = $q.defer();
@@ -74,16 +74,16 @@ app.factory('userService', [
                 return deferred.promise;
             },
             getAllUsers: function () {
-            var deferred = $q.defer();
+                var deferred = $q.defer();
 
-            $http.get(BASE_URL + 'Users/', {headers: authService.getAuthHeaders()})
-                .then(function (response) {
-                    deferred.resolve(response.data);
-                }, function (error) {
-                    deferred.reject(error.data);
-                });
+                $http.get(BASE_URL + 'Users/', {headers: authService.getAuthHeaders()})
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function (error) {
+                        deferred.reject(error.data);
+                    });
 
-            return deferred.promise;
+                return deferred.promise;
             },
             getUserIdFromUsername: function (userName) {
                 var deferred = $q.defer();

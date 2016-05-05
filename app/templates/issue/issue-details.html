@@ -141,7 +141,7 @@
                             </div>
                         </div>
                         <div class="text-center" ng-if="commentsParams.totalItem>commentsParams.pageSize">
-                            <div pagination  ng-model="commentsParams.pageNumber"
+                            <div pagination ng-model="commentsParams.pageNumber"
                                  items-per-page="commentsParams.pageSize" total-items="commentsParams.totalItem"
                                  ng-change="reloadCommentsToView()" max-size="9" boundary-links="true"></div>
                         </div>

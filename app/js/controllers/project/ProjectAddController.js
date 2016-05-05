@@ -41,13 +41,13 @@ app.controller('ProjectAddController', [
                     var labels = projectData.labels.trim().split(/\s*,\s*/);
                     project.labels = [];
                     labels.forEach(function (label) {
-                        project.labels.push({Name:label});
+                        project.labels.push({Name: label});
                     });
 
                     var priorities = projectData.priorities.trim().split(/\s*,\s*/);
                     project.priorities = [];
                     priorities.forEach(function (priority) {
-                        project.priorities.push({Name:priority});
+                        project.priorities.push({Name: priority});
                     });
 
                     project.name = projectData.name;
@@ -60,11 +60,11 @@ app.controller('ProjectAddController', [
                             notifyService.showInfo('New project created');
                             $location.path('/');
                         }, function (error) {
-                            notifyService.showError('Create project failed',error);
+                            notifyService.showError('Create project failed', error);
                         });
 
                 }, function (error) {
-                    notifyService.showError('Load current user data failed',error);
+                    notifyService.showError('Load current user data failed', error);
                 });
         };
     }

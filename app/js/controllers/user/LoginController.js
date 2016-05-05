@@ -7,6 +7,7 @@ app.controller('LoginController', [
     'authService',
     'notifyService',
     function ($scope, $location, userService, authService, notifyService) {
+
         $scope.login = function (userData) {
             userService.login(userData)
                 .then(function (data) {

@@ -56,7 +56,7 @@ app.controller('ProjectEditController', [
                 notifyService.showError('Load project data failed', error);
             });
 
-        $scope.editProject = function (projectData){
+        $scope.editProject = function (projectData) {
 
             userService.getUserIdFromUsername(projectData.Lead.Username)
                 .then(function (data) {
@@ -71,13 +71,13 @@ app.controller('ProjectEditController', [
                     var labels = projectData.Labels.trim().split(/\s*,\s*/);
                     project.Labels = [];
                     labels.forEach(function (label) {
-                        project.Labels.push({Name:label});
+                        project.Labels.push({Name: label});
                     });
 
                     var priorities = projectData.Priorities.trim().split(/\s*,\s*/);
                     project.Priorities = [];
                     priorities.forEach(function (priority) {
-                        project.Priorities.push({Name:priority});
+                        project.Priorities.push({Name: priority});
                     });
 
                     projectService.editProject(projectId, project)
@@ -89,7 +89,7 @@ app.controller('ProjectEditController', [
                         });
 
                 }, function (error) {
-                    notifyService.showError('Load current assignee data failed');
+                    notifyService.showError('Load current assignee data failed', error);
                 });
         };
     }

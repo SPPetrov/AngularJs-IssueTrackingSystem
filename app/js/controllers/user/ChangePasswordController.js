@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('ChangePasswordController',[
+app.controller('ChangePasswordController', [
     '$scope',
     '$location',
     'userService',

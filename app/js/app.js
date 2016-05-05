@@ -1,12 +1,12 @@
 "use strict";
 
-var app = angular.module('IssueTracker',[
-    'ngRoute',
-    'ui.bootstrap.pagination'])
+var app = angular.module('IssueTracker', [
+        'ngRoute',
+        'ui.bootstrap.pagination'])
     .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/')
     .constant('PAGE_SIZE', 10)
     .config(['$routeProvider',
-        function($routeProvider) {
+        function ($routeProvider) {
             $routeProvider.when('/', {
                 templateUrl: 'templates/home.html'
             });

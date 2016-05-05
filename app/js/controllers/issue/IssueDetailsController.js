@@ -12,13 +12,13 @@ app.controller('IssueDetailsController', [
     'PAGE_SIZE',
     function ($scope, $routeParams, $location, authService, projectService, issueService, commentService, notifyService, PAGE_SIZE) {
 
-        function loadIssueToView () {
-            var issueId = $routeParams.id;
+        var issueId = $routeParams.id;
 
-            if (isNaN(issueId)) {
-                $location.path('/');
-            }
+        if (isNaN(issueId)) {
+            $location.path('/');
+        }
 
+        function loadIssueToView() {
             issueService.getIssueById($routeParams.id)
                 .then(function (issueData) {
                     issueData.LabelsToString = issueData.Labels.map(function (label) {
@@ -41,20 +41,20 @@ app.controller('IssueDetailsController', [
                                     $scope.commentsParams = {
                                         pageNumber: 1,
                                         pageSize: 3,
-                                        totalItem:commentData.length
+                                        totalItem: commentData.length
                                     };
 
                                     $scope.reloadCommentsToView = function () {
                                         $scope.comments = commentData.slice(
-                                            ($scope.commentsParams.pageNumber-1)*$scope.commentsParams.pageSize,
-                                            $scope.commentsParams.pageNumber*$scope.commentsParams.pageSize
+                                            ($scope.commentsParams.pageNumber - 1) * $scope.commentsParams.pageSize,
+                                            $scope.commentsParams.pageNumber * $scope.commentsParams.pageSize
                                         );
                                     };
 
                                     $scope.reloadCommentsToView();
 
                                 }, function (error) {
-                                    notifyService.showError('Cannot load comments');
+                                    notifyService.showError('Cannot load comments', error);
                                 });
 
                         }, function (error) {
@@ -79,7 +79,7 @@ app.controller('IssueDetailsController', [
                 });
         };
 
-        $scope.addComment = function (issueId, comment){
+        $scope.addComment = function (issueId, comment) {
             var data = {
                 Text: comment
             };
@@ -87,7 +87,7 @@ app.controller('IssueDetailsController', [
                 .then(function (commentData) {
                     loadIssueToView();
                 }, function (error) {
-                    notifyService.showError('Cannot add comment to issue!');
+                    notifyService.showError('Cannot add comment to issue!', error);
                 });
         };
     }
